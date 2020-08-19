@@ -14,11 +14,17 @@ header h1 {
   font-size: 65px;
 }
 
-
+.hidden {
+  display: none;
+}
 
 main {
   margin-top: 60px;
   text-align:center;
+}
+
+img {
+  width: 200px;
 }
 
 main form label {
@@ -35,7 +41,7 @@ main h1 {
 
 main h2 {
   margin: 18px 0 12px 0;
-  border-bottom: 1px solid #5c4f41;
+  text-decoration-line: underline;
   font-family: 'Special Elite', cursive;
   font-size: 24px;
 }

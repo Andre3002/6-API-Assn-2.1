@@ -4,18 +4,28 @@ function getDogImageMulti(numDogs) {
     fetch('https://dog.ceo/api/breeds/image/random/' + numDogs)
         .then(response => response.json())
         .then(responseJson => displayResults(responseJson));
-    //.then(responseJson => console.log(responseJson));
+
 }
 
 function displayResults(responseJson) {
     console.log(responseJson);
 
-    $("div").empty();
-    // WHY DOESNT THIS WORK?
-    for (let i = 0; i < responseJson.message.length; i++) {
+    // Initial method - Works, but does not meet reqs
+    // $("div").empty();
+    // for (let i = 0; i < responseJson.message.length; i++) {
+    //     $("div").append(`<img src="${responseJson.message[i]}">`)
+    // }
+
+    //updated method
+    $('.results-img').replaceWith(
+        `<img src="${responseJson.message[0]}" class="results-img">`)
+
+    for (let i = 1; i < responseJson.message.length; i++) {
         $("div").append(`<img src="${responseJson.message[i]}">`)
     }
-    //$("div").append(`<img src="${responseJson.message}">`)
+
+    //display the results section
+    $('.results').removeClass('hidden');
 
 }
 
@@ -24,7 +34,6 @@ function watchForm() {
         event.preventDefault();
 
         const numDogs = $('#js-numDogs').val(); // obtains number from form
-        //console.log(numDogs); // confirm number has been obtained
 
         //enforce constraint on number of dogs, then call api
         if (numDogs < 1 || numDogs > 50) {
